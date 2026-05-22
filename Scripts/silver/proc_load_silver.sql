@@ -1,9 +1,14 @@
 ------------------------------------------------////////////////////////////////////////////----------------------------------------------------
 /* SCRIPT PURPOSE:
-                - To create or alter  Procedure silver.load
+                - To create   Procedure silver.load_silver in the Silver Schema that performs ETL
                 - The script Transforms and Load data in Silver Layer  
                 - The Transformation includes cleansing data by trimming extra spaces , ,standardizing/Normalizing data, 
                   Data enncrichment , Handling Missing Values , Derived Columns  
+
+   	Parameters:
+			  - This Script Does not accept any parameters
+   	Example Usage:
+				  Exec silver.load_silver
 */
 ------------------------------------------------////////////////////////////////////////////----------------------------------------------------
 
