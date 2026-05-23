@@ -145,17 +145,17 @@ create or alter procedure silver.load_silver as
 			Print '---------------------------------------------------------'
 			
 			Print '---------------------------------------------------------';
-			Print '2) Loading Erm Tables'
+			Print '2) Loading erp Tables'
 			print '----------------------------------------------------------';	
 ------------------------------------------------------------------------------------------------------------------------------------------
--- INSERTING INTO silver.erm_CUST_AZ12
+-- INSERTING INTO silver.erp_CUST_AZ12
 ------------------------------------------------------------------------------------------------------------------------------------------
 			Set @start_time = GETDATE()
-			if object_id('silver.erm_CUST_AZ12') is not null
-				Print 'Truncating table silver.erm_CUST_AZ12'
-				truncate table silver.erm_CUST_AZ12
-			PRINT 'INSERTING INTO silver.erm_CUST_AZ12'	
-			insert into silver.erm_CUST_AZ12 
+			if object_id('silver.erp_CUST_AZ12') is not null
+				Print 'Truncating table silver.erp_CUST_AZ12'
+				truncate table silver.erp_CUST_AZ12
+			PRINT 'INSERTING INTO silver.erp_CUST_AZ12'	
+			insert into silver.erp_CUST_AZ12 
 			(CID, 
 			BDATE, 
 			GEN)
@@ -172,7 +172,7 @@ create or alter procedure silver.load_silver as
 				when GEN=Upper(Trim('M')) or GEN=Upper(Trim('MALE')) then 'Male'
 				when GEN=Upper(Trim('F')) or GEN=Upper(Trim('FEMALE')) then 'Female'
 				else 'n/a' end as Gen
-			from bronze.erm_CUST_AZ12;
+			from bronze.erp_CUST_AZ12;
 
 
 			Set @end_time = GETDATE()
@@ -181,40 +181,40 @@ create or alter procedure silver.load_silver as
 			Print '---------------------------------------------------------'
 			
 ------------------------------------------------------------------------------------------------------------------------------------------
--- INSERTING INTO silver.erm_LOC_A101
+-- INSERTING INTO silver.erp_LOC_A101
 ------------------------------------------------------------------------------------------------------------------------------------------
 			Set @start_time = GETDATE();
-			if object_id('silver.erm_LOC_A101') is not null
-				Print 'Truncating table silver.erm_LOC_A101'
-				truncate table silver.erm_LOC_A101
-			PRINT 'INSERTING INTO silver.erm_LOC_A101'
-			insert into silver.erm_LOC_A101 (CID, CNTRY)
+			if object_id('silver.erp_LOC_A101') is not null
+				Print 'Truncating table silver.erp_LOC_A101'
+				truncate table silver.erp_LOC_A101
+			PRINT 'INSERTING INTO silver.erp_LOC_A101'
+			insert into silver.erp_LOC_A101 (CID, CNTRY)
 
 			Select replace(Cid,'-','') as CID ,
 			Case when Upper(Trim(CNTRY)) in ('USA' ,'US') then  'United States'
 			when Upper(Trim(CNTRY)) ='DE' then 'Germany'
 			when Trim(CNTRY) = '' or  CNTRY is null then 'n/a'
 			else Trim(CNTRY) end as CNTRY
-			from bronze.erm_LOC_A101 ;
+			from bronze.erp_LOC_A101 ;
 
 			Set @end_time = GETDATE()
 			print 'Loading and Transforming Duration ' + cast(datediff(second,@start_time,@end_time) as nvarchar) + ' seconds'
 			Print '---------------------------------------------------------'
 			Print '---------------------------------------------------------'
 ------------------------------------------------------------------------------------------------------------------------------------------
--- INSERTING INTO silver.erm_PX_CAT_G1V2
+-- INSERTING INTO silver.erp_PX_CAT_G1V2
 ------------------------------------------------------------------------------------------------------------------------------------------
 			Set @start_time = GETDATE()
-			if object_id('silver.erm_PX_CAT_G1V2') is not null
-				Print 'Truncating table silver.erm_PX_CAT_G1V2'
-				truncate table silver.erm_PX_CAT_G1V2
-				PRINT 'INSERTING INTO silver.erm_PX_CAT_G1V2'
-			insert into silver.erm_PX_CAT_G1V2 (ID, CAT, SUBCAT, MAINTENANCE)
+			if object_id('silver.erp_PX_CAT_G1V2') is not null
+				Print 'Truncating table silver.erp_PX_CAT_G1V2'
+				truncate table silver.erp_PX_CAT_G1V2
+				PRINT 'INSERTING INTO silver.erp_PX_CAT_G1V2'
+			insert into silver.erp_PX_CAT_G1V2 (ID, CAT, SUBCAT, MAINTENANCE)
 			Select  id ,
 			CAT,
 			SUBCAT,
 			MAINTENANCE
-			from bronze.erm_PX_CAT_G1V2
+			from bronze.erp_PX_CAT_G1V2
 			;
 			Set @end_time = GETDATE()
 			print 'Loading and Transforming Duration ' + cast(datediff(second,@start_time,@end_time) as nvarchar) + ' seconds';
@@ -233,5 +233,10 @@ create or alter procedure silver.load_silver as
 		print 'Error Number' + cast(Error_Number() as nvarchar)
 		end catch ;
 	end;
+
+	
+
+
+
 
 	
