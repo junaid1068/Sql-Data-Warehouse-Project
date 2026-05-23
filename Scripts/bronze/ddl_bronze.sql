@@ -6,6 +6,7 @@ Script Purpose : To Create Tables in Bronze schema , dropping existing tables if
                  Run this script to redifine the DDL structure of 'bronze'  Tables
 ===================================================================================================================
 */
+
 if  OBJECT_ID('bronze.crm_cust_info', 'U') IS NOT NULL
 	drop table bronze.crm_cust_info
 
@@ -52,26 +53,29 @@ sls_price int
 go
 
 
-if OBJECT_ID('bronze.erm_PX_CAT_G1V2', 'U') IS NOT NULL
-drop table bronze.erm_PX_CAT_G1V2
- create table bronze.erm_PX_CAT_G1V2(ID nvarchar(50),
+if OBJECT_ID('bronze.erp_PX_CAT_G1V2', 'U') IS NOT NULL
+drop table bronze.erp_PX_CAT_G1V2
+ create table bronze.erp_PX_CAT_G1V2(ID nvarchar(50),
  CAT nvarchar(50),
  SUBCAT nvarchar(50),
  MAINTENANCE  nvarchar(50),
  );
  go
 
- if OBJECT_ID('bronze.erm_LOC_A101', 'U') IS NOT NULL
-	drop table bronze.erm_LOC_A101
-	create table bronze.erm_LOC_A101(
+ if OBJECT_ID('bronze.erp_LOC_A101', 'U') IS NOT NULL
+	drop table bronze.erp_LOC_A101
+	create table bronze.erp_LOC_A101(
 	CID nvarchar(50), CNTRY nvarchar(50)
 	);
 go
 
-if OBJECT_ID('bronze.erm_CUST_AZ12', 'U') IS NOT NULL
-drop table bronze.erm_CUST_AZ12
-create table bronze.erm_CUST_AZ12(
+if OBJECT_ID('bronze.erp_CUST_AZ12', 'U') IS NOT NULL
+drop table bronze.erp_CUST_AZ12
+create table bronze.erp_CUST_AZ12(
 CID nvarchar(50),
 BDATE date,
 GEN nvarchar(50)
+);
+
+
 );
