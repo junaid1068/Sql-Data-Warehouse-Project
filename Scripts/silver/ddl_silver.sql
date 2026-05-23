@@ -7,6 +7,7 @@
 
 
 
+
 if  OBJECT_ID('silver.crm_cust_info', 'U') IS NOT NULL
 	drop table silver.crm_cust_info
 
@@ -57,9 +58,9 @@ dwh_create_date Datetime2 default Getdate()
 go
 
 
-if OBJECT_ID('silver.erm_PX_CAT_G1V2', 'U') IS NOT NULL
-drop table silver.erm_PX_CAT_G1V2
- create table silver.erm_PX_CAT_G1V2(ID nvarchar(50),
+if OBJECT_ID('silver.erp_PX_CAT_G1V2', 'U') IS NOT NULL
+drop table silver.erp_PX_CAT_G1V2
+ create table silver.erp_PX_CAT_G1V2(ID nvarchar(50),
  CAT nvarchar(50),
  SUBCAT nvarchar(50),
  MAINTENANCE  nvarchar(50),
@@ -67,19 +68,24 @@ dwh_create_date Datetime2 default Getdate()
  );
  go
 
- if OBJECT_ID('silver.erm_LOC_A101', 'U') IS NOT NULL
-	drop table silver.erm_LOC_A101
-	create table silver.erm_LOC_A101(
+ if OBJECT_ID('silver.erp_LOC_A101', 'U') IS NOT NULL
+	drop table silver.erp_LOC_A101
+	create table silver.erp_LOC_A101(
 	CID nvarchar(50), CNTRY nvarchar(50),
 dwh_create_date Datetime2 default Getdate()
 	);
 go
 
-if OBJECT_ID('silver.erm_CUST_AZ12', 'U') IS NOT NULL
-drop table silver.erm_CUST_AZ12
-create table silver.erm_CUST_AZ12(
+if OBJECT_ID('silver.erp_CUST_AZ12', 'U') IS NOT NULL
+drop table silver.erp_CUST_AZ12
+create table silver.erp_CUST_AZ12(
 CID nvarchar(50),
 BDATE date,
 GEN nvarchar(50),
 dwh_create_date Datetime2 default Getdate()
 );
+
+
+
+
+
