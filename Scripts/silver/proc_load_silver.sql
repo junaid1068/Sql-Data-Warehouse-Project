@@ -77,7 +77,7 @@ create or alter procedure silver.load_silver as
 			insert into silver.crm_prd_info (prd_id, cat_id, prd_key, prd_nm, prd_cost, prd_line, prd_start_dt, prd_end_dt) 
 
 			Select prd_id 
-			, substring(prd_key,1,5) as cat_id
+			, Replace(substring(prd_key,1,5),'-','_') as cat_id
 			, SUBSTRING( prd_key,7,len(prd_key)) as prd_key   
 			, prd_nm 
 			, coalesce(prd_cost,0) as prd_cost
@@ -238,5 +238,3 @@ create or alter procedure silver.load_silver as
 
 
 
-
-	
