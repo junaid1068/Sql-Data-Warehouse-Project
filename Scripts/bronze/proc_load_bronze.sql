@@ -36,9 +36,10 @@ begin
 			Bulk insert bronze.crm_cust_info 
 			from 'D:\CODE\Data_engineering\sql_data_warehouse_project_main\datasets\source_crm\cust_info.csv' 
 			with (
-				FIRSTROW = 2,
+				FIRSTROW = 2,   -- To Define the starting row for data loading, especially when the first row contains column headers.
 				Fieldterminator = ',',
-				Tablock );
+				Tablock ); -- To optimize the bulk insert operation by acquiring a bulk update lock on the table, 
+							--which can improve performance when loading large volumes of data.
 			Set @end_time = GETDATE()
 			print 'Loading Duration ' + cast(datediff(second,@start_time,@end_time) as nvarchar) + ' seconds'
 			print ''
@@ -75,10 +76,10 @@ begin
 			print '----------------------------------------------------------';
 
 			Set @start_time = GETDATE()
-			print '>> Truncating Table: bronze.erm_CUST_AZ12'
-			Truncate table bronze.erm_CUST_AZ12 ;
-			print'Inserting  bronze.erm_CUST_AZ12'
-			Bulk insert bronze.erm_CUST_AZ12 
+			print '>> Truncating Table: bronze.erp_CUST_AZ12'
+			Truncate table bronze.erp_CUST_AZ12 ;
+			print'Inserting  bronze.erp_CUST_AZ12'
+			Bulk insert bronze.erp_CUST_AZ12 
 			from 'D:\CODE\Data_engineering\sql_data_warehouse_project_main\datasets\source_erp\CUST_AZ12.csv' 
 			with (
 				FIRSTROW = 2,
@@ -90,10 +91,10 @@ begin
 			print ''
 
 			Set @start_time = GETDATE()
-			print '>> Truncating Table: bronze.erm_LOC_A101 '
-			Truncate table  bronze.erm_LOC_A101;
-			print'Inserting  bronze.erm_LOC_A101'
-			Bulk insert bronze.erm_LOC_A101 
+			print '>> Truncating Table: bronze.erp_LOC_A101 '
+			Truncate table  bronze.erp_LOC_A101;
+			print'Inserting  bronze.erp_LOC_A101'
+			Bulk insert bronze.erp_LOC_A101 
 			from 'D:\CODE\Data_engineering\sql_data_warehouse_project_main\datasets\source_erp\LOC_A101.csv' 
 			with (
 				FIRSTROW = 2,
@@ -104,10 +105,10 @@ begin
 
 			print ''
 			Set @start_time = GETDATE()
-			print '>> Truncating Table: bronze.erm_PX_CAT_G1V2 '
-			Truncate table  bronze.erm_PX_CAT_G1V2 ;
-			print'Inserting bronze.erm_PX_CAT_G1V2 '
-			Bulk insert bronze.erm_PX_CAT_G1V2 
+			print '>> Truncating Table: bronze.erp_PX_CAT_G1V2 '
+			Truncate table  bronze.erp_PX_CAT_G1V2 ;
+			print'Inserting bronze.erp_PX_CAT_G1V2 '
+			Bulk insert bronze.erp_PX_CAT_G1V2 
 			from 'D:\CODE\Data_engineering\sql_data_warehouse_project_main\datasets\source_erp\PX_CAT_G1V2.csv' 
 			with (
 				FIRSTROW = 2,
@@ -133,3 +134,6 @@ begin
 	
 
 end
+
+
+
